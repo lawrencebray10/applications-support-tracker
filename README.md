@@ -115,7 +115,30 @@ php artisan migrate
 
 These migrations create the application tables, including staff roles, staff details, activities, and activity logs.
 
-### 6. Start the application
+
+### 6. Create the Initial Administrator
+
+Before seeding, configure these variables in your local `.env` file:
+
+```env
+INITIAL_ADMIN_NAME="System Administrator"
+INITIAL_ADMIN_EMAIL=admin@example.com
+INITIAL_ADMIN_PASSWORD=
+```
+
+Set `INITIAL_ADMIN_PASSWORD` to a strong password of at least 12 characters. Do not commit your actual password.
+
+Clear Laravel's configuration cache and run the seeder:
+
+```bash
+php artisan config:clear
+php artisan db:seed
+```
+
+The seeder creates the initial administrator only if the configured email does not already exist. It does not reset an existing administrator's password.
+
+
+### 7. Start the application
 
 ```bash
 php artisan serve
