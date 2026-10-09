@@ -28,7 +28,7 @@
         <env name="DB_PORT" value="3306" force="true"/>
         <env name="DB_DATABASE" value="applications_support_tracker_test" force="true"/>
         <env name="DB_USERNAME" value="applications_support" force="true"/>
-        <env name="DB_PASSWORD" value="Lyaarrrby_007123@!#" force="true"/>
+        <env name="DB_PASSWORD" value="" force="true"/>
         <env name="DB_URL" value="" force="true"/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
