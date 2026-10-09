@@ -152,32 +152,34 @@ The application redirects unauthenticated visitors to the login page.
 
 ## Testing
 
-Run the automated test suite with:
+The application includes automated unit and feature tests. Run the test suite from the project directory:
 
 ```bash
 php artisan test
 ```
 
-The current automated tests cover the home-page redirect and login-page accessibility. Additional automated tests can be added for authentication, permissions, activity updates, and reporting.
+The feature tests cover:
 
-## Security Notes
+- **Authentication:** Login-page access, home-page redirection, valid and invalid login attempts, and logout.
+- **Activity updates:** Saving status updates and remarks, preserving previous updates, rejecting invalid statuses, and preventing guest submissions.
+- **Daily handover:** Displaying activity and staff details, filtering records by date, and restricting access to authenticated users.
+- **Reports:** Calculating update totals and status counts, filtering by a custom date range, and validating date ranges.
+- **Role-based access control:** Restricting administrative pages and activity creation to administrators while allowing support staff to access operational features.
 
-- Staff registration is managed through the administrator interface.
-- Passwords are hashed before being stored.
-- Server-side authorization protects administrator-only routes.
-- Form inputs are validated before records are saved.
-- Activity updates are stored as separate records to preserve history.
-- Environment files and database credentials should remain outside version control.
+### Test database configuration
 
-## Future Improvements
+Tests use the dedicated MySQL database configured in `phpunit.xml`. Before running the suite, ensure that:
 
-Potential enhancements include:
+- MySQL Server is running.
+- The configured test database exists.
+- The configured database user has the necessary privileges.
+- The test database credentials are supplied locally and are not committed to version control.
 
-- Expanded automated feature and authorization tests.
-- Improved timezone handling and timestamp display.
-- Exportable reports for operational handovers.
-- Production deployment configuration and monitoring.
-- Additional audit and account-management safeguards.
+**Important:** Automated tests use database migrations and may reset test data. Never point the testing configuration at a database containing production or personal data.
+
+### Current test results
+
+The latest local test run passed **22 tests with 66 assertions**. Rerun `php artisan test` after making changes to confirm that the suite still passes.
 
 ## License
 
